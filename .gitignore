@@ -13,11 +13,11 @@
 !*.go
 !go.sum
 !go.mod
-
+!*.yaml
 !README.md
 !LICENSE
-
-# !Makefile
+!Dockerfile
+!Makefile
 
 # ...even if they are in subdirectories
 !*/

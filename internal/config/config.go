@@ -23,12 +23,21 @@ type HTTPserver struct {
 }
 
 func LoadConfig() *Config {
-	configPath := "C:\\Users\\Colde\\goLol\\config\\local.yaml" //os.Getenv("CONFIG_PATH")
+	configPath := os.Getenv("CONFIG_PATH")
 	if configPath == "" {
 		log.Fatal("CONFIG_PATH is not set")
 	}
 	//file exists?
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
+		info, err := os.ReadDir("./")
+		if err != nil {
+			log.Fatalf("cant allocate current directory")
+		}
+		var dirInfo string
+		for _, f := range info {
+			dirInfo += f.Name() + "\n"
+		}
+		log.Printf("Files in current dir a %s", dirInfo)
 		log.Fatalf("config file %s not exist\n", configPath)
 	}
 
